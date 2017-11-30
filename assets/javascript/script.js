@@ -37,7 +37,7 @@ $(document).ready(function(){
 				var newButtons = $('<button type="button" value="' + topics[i] + '">' + topics[i] + "</button>").addClass("allButtons");
 
 				//Adds data property to each new Button
-				newButtons.attr({"data-index": topics[i] });
+				newButtons.attr({"data-show": topics[i] });
 
 				//Adds each new button to the HTML element
 				$("#buttonsDiv").append(newButtons);
@@ -46,7 +46,7 @@ $(document).ready(function(){
 		//This function captures the user's choice & runs the AJAX API
 		$(".allButtons").on("click", function(){
 			//Save the user's choice variable's new value
-			var userChoice = $(this).data("index"); 
+			var userChoice = $(this).data("show"); 
 
 			//Convert the user's choice to an encoded String for URL purposes
 			var userChoiceEncoded = encodeURI(userChoice);
@@ -66,9 +66,9 @@ $(document).ready(function(){
 				//Creating a new variable to contain the syntax to GET the FIRST row of the table
 				var firstRowTds = $("table").children().eq(1).children("tr").eq(0).children("td");
 				//Setting the inner content of each td in the first row
-				firstRowTds.eq(0).html('<img src="'+ response.data[0].images.original_still.url + '" alt="' + response.data[0].title + '">');
-				firstRowTds.eq(1).html('<img src="'+ response.data[1].images.original_still.url + '" alt="' + response.data[1].title + '">');
-				firstRowTds.eq(2).html('<img src="'+ response.data[2].images.original_still.url + '" alt="' + response.data[2].title + '">');
+				firstRowTds.eq(0).html('<img src="'+ response.data[0].images.fixed_height_still.url + '" alt="' + response.data[0].title + '">');
+				firstRowTds.eq(1).html('<img src="'+ response.data[1].images.fixed_height_still.url + '" alt="' + response.data[1].title + '">');
+				firstRowTds.eq(2).html('<img src="'+ response.data[2].images.fixed_height_still.url + '" alt="' + response.data[2].title + '">');
 
 				//Creating a new variable to contain the syntax to GET the SECOND row of the table
 				var secondRowTds = $("table").children().eq(1).children("tr").eq(1).children("td");
@@ -81,9 +81,9 @@ $(document).ready(function(){
 				//Creating a new variable to contain the syntax to GET the THRID row of the table
 				var thirdRowTds = $("table").children().eq(1).children("tr").eq(2).children("td");
 				//Setting the inner content of each td in the first row
-				thirdRowTds.eq(0).html('<img src="'+ response.data[3].images.original_still.url + '" alt="' + response.data[3].title + '">');
-				thirdRowTds.eq(1).html('<img src="'+ response.data[4].images.original_still.url + '" alt="' + response.data[4].title + '">');
-				thirdRowTds.eq(2).html('<img src="'+ response.data[5].images.original_still.url + '" alt="' + response.data[5].title + '">');
+				thirdRowTds.eq(0).html('<img src="'+ response.data[3].images.fixed_height_still.url + '" alt="' + response.data[3].title + '">');
+				thirdRowTds.eq(1).html('<img src="'+ response.data[4].images.fixed_height_still.url + '" alt="' + response.data[4].title + '">');
+				thirdRowTds.eq(2).html('<img src="'+ response.data[5].images.fixed_height_still.url + '" alt="' + response.data[5].title + '">');
 
 				//Creating a new variable to contain the syntax to GET the FOURTH row of the table
 				var fourthRowTds = $("table").children().eq(1).children("tr").eq(3).children("td");
@@ -96,9 +96,9 @@ $(document).ready(function(){
 				//Creating a new variable to contain the syntax to GET the FIFTH row of the table
 				var fifthRowTds = $("table").children().eq(1).children("tr").eq(4).children("td");
 				//Setting the inner content of each td in the first row
-				fifthRowTds.eq(0).html('<img src="'+ response.data[6].images.original_still.url + '" alt="' + response.data[6].title + '">');
-				fifthRowTds.eq(1).html('<img src="'+ response.data[7].images.original_still.url + '" alt="' + response.data[7].title + '">');
-				fifthRowTds.eq(2).html('<img src="'+ response.data[8].images.original_still.url + '" alt="' + response.data[8].title + '">');
+				fifthRowTds.eq(0).html('<img src="'+ response.data[6].images.fixed_height_still.url + '" alt="' + response.data[6].title + '">');
+				fifthRowTds.eq(1).html('<img src="'+ response.data[7].images.fixed_height_still.url + '" alt="' + response.data[7].title + '">');
+				fifthRowTds.eq(2).html('<img src="'+ response.data[8].images.fixed_height_still.url + '" alt="' + response.data[8].title + '">');
 
 				//Creating a new variable to contain the syntax to GET the SICTH row of the table
 				var sixthRowTds = $("table").children().eq(1).children("tr").eq(5).children("td");
@@ -109,6 +109,29 @@ $(document).ready(function(){
 
 				//Apply a class to all the img elements
 				$("img").addClass("allGiphyImages");
+
+
+
+			//Play and stop each gif on user click
+			$("body").on("click", ".allGiphyImages", function() {
+				var src = $(this).attr("src");
+				
+				if($(this).hasClass("play")){
+					//Stop the gif animation
+					$(this).attr("src", src.replace(/\.gif/i, "_s.gif"));
+					$(this).removeClass("play");
+				} else {
+					//Play the gif animation
+					$(this).addClass("play");
+					$(this).attr("src", src.replace(/\_s.gif/i, ".gif"));
+				}
+
+			});
+
+
+
+
+
 
 			//Testing & Debugging
 			console.log(userChoice);

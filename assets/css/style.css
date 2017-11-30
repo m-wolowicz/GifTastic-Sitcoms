@@ -55,6 +55,47 @@ h4 {
 }
 
 .allGiphyImages {
-	max-width: 200px;
-	max-height: 200px;
+	border: 2px solid black;
+	border-radius: 5px;
+	max-width: 95%;
 }
+
+
+/*TABLE FORMATTING*/
+	#myTable {
+		margin-bottom: 100px;
+	}
+
+	#myTable th {
+		border: 0px;
+	}
+
+	#myTable tr {
+		border-top: 0px;
+		text-align: center;
+		text-transform: uppercase;
+		font-weight: bolder;
+	}
+
+	#myTable > tbody > tr:nth-child(1) > td {
+	    margin: auto;
+	    height: 200px;
+	    line-height: 200px;
+	}
+
+	#myTable > tbody > tr:nth-child(3) > td {
+	    margin: auto;
+	    height: 200px;
+	    line-height: 200px;
+	}
+
+	#myTable > tbody > tr:nth-child(5) > td {
+	    margin: auto;
+	    height: 200px;
+	    line-height: 200px;
+	}
+
+	#myTable td {
+		border-top: 0px;
+		text-align: center;
+	}
