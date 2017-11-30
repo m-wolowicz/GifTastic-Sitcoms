@@ -1,0 +1,60 @@
+/*Creating my own CSS Style for the game*/
+
+/*Styles that apply to the entire page*/
+body {
+	background-color: #fafafa;
+	font-family: 'Open Sans', sans-serif;
+}
+
+/*JUMBOTRON*/
+.jumbotron {
+	background-image: url("../images/background.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	-webkit-background-size: cover;
+	background-size: cover;
+}
+
+.jumbotron h1 {
+	font-family: 'Bungee', cursive;
+	color: white;
+}
+
+.jumbotron p {
+	font-family: 'Open Sans', sans-serif;
+	color: white;
+}
+
+h4 {
+	text-transform: uppercase;
+	font-weight: bolder;
+	margin-bottom: 30px;
+}
+
+#inputField {
+	width: 320px;
+	height: 30px;
+	margin-bottom: 30px;
+}
+
+#submitButton {
+	width: 100px;
+    height: 30px;
+    margin-bottom: 30px;
+}
+
+.allButtons {
+	margin-bottom: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 10px 20px;
+    border: none;
+    background-color: darkslategray;
+    color: white;
+    border-radius: 0;
+}
+
+.allGiphyImages {
+	max-width: 200px;
+	max-height: 200px;
+}
