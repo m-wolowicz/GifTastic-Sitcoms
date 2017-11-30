@@ -16,13 +16,11 @@ $(document).ready(function(){
 						"The Fresh Prince of Bel-Air",
 						"Friends TV",
 						"How I Met Your Mother",
-						"Master of None",
 						"Modern Family",
 						"Parks And Recreation",
 						"Party Down",
 						"Scrubs",
 						"Seinfeld",
-						"Sex and the City",
 						"That 70s Show",
 						"The Office",
 						"Veep"];
@@ -31,6 +29,7 @@ $(document).ready(function(){
 	// =========
 
 		//This for loop creates buttons out of the topics array
+		function createButtons() {
 			for (var i = 0; i < topics.length; i++) {
 
 				//Creates a new variable to contain the syntax to create each button
@@ -42,6 +41,29 @@ $(document).ready(function(){
 				//Adds each new button to the HTML element
 				$("#buttonsDiv").append(newButtons);
 			}
+		}
+
+		//This function grabs the user input and adds it to the array of buttons
+		function addNewButtons() {
+			$("#submitButton").on("click", function() {
+				var newUserButton = document.forms["inputForm"]["userInput"].value;
+
+				//Add new button to the Array
+				topics.push(newUserButton);
+
+				createButtons();
+
+				//Testing & Debugging
+				console.log(newUserButton);
+				console.log(topics);
+			});
+		}
+
+
+	// MAIN PROCESS
+	// ============
+		createButtons();
+		addNewButtons();
 
 		//This function captures the user's choice & runs the AJAX API
 		$(".allButtons").on("click", function(){
@@ -110,27 +132,7 @@ $(document).ready(function(){
 				//Apply a class to all the img elements
 				$("img").addClass("allGiphyImages");
 
-
-
-			//Play and stop each gif on user click
-			$("body").on("click", ".allGiphyImages", function() {
-				var src = $(this).attr("src");
-				
-				if($(this).hasClass("play")){
-					//Stop the gif animation
-					$(this).attr("src", src.replace(/\.gif/i, "_s.gif"));
-					$(this).removeClass("play");
-				} else {
-					//Play the gif animation
-					$(this).addClass("play");
-					$(this).attr("src", src.replace(/\_s.gif/i, ".gif"));
-				}
-
-			});
-
-
-
-
+				addNewButtons();
 
 
 			//Testing & Debugging
@@ -141,6 +143,24 @@ $(document).ready(function(){
 			});
 
 		});
+
+		//This funciton allows the user to play and stop each gif on user click
+		$("body").on("click", ".allGiphyImages", function() {
+			var src = $(this).attr("src");
+
+			if($(this).hasClass("play")){
+				//Stop the gif animation
+				$(this).attr("src", src.replace(/\.gif/i, "_s.gif"));
+				$(this).removeClass("play");
+			} else {
+				//Play the gif animation
+				$(this).addClass("play");
+				$(this).attr("src", src.replace(/\_s.gif/i, ".gif"));
+			}
+
+		});
 		
+
+	
 
 }); //IMPORTANT!
