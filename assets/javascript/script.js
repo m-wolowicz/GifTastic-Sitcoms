@@ -77,6 +77,8 @@ $(document).ready(function(){
 		});
 
 		//This function captures the user's choice & runs the AJAX API
+		//IMPORTANT This $(document).on("click", ".allButtons", function() fixed issue:
+		//on click event was not working before when using $(".allButtons").on("click", function()
 		$(document).on("click", ".allButtons", function(){
 			//Save the user's choice variable's new value
 			var userChoice = $(this).data("show");
