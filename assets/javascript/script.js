@@ -28,8 +28,10 @@ $(document).ready(function(){
 	// FUNCTIONS
 	// =========
 
-		//This for loop creates buttons out of the topics array
+		//This function creates the buttons for the array of topics above
 		function createButtons() {
+
+			//This for loop creates buttons out of the topics array
 			for (var i = 0; i < topics.length; i++) {
 
 				//Creates a new variable to contain the syntax to create each button
@@ -43,27 +45,36 @@ $(document).ready(function(){
 			}
 		}
 
+	// MAIN PROCESS
+	// ============
+
+		//This calls the function to create the buttons at the begining of the load page event.
+		createButtons();
+
 		//This function grabs the user input and adds it to the array of buttons
-		function addNewButtons() {
-			$("#submitButton").on("click", function() {
+			$("#submitButton").on("click", function(event) {
+
+				// event.preventDefault() prevents submit button from trying to send a form.
+        		// Using a submit button instead of a regular button allows the user to hit
+        		// "Enter" instead of clicking the button if desired
+        		event.preventDefault();
+
+        		//Create a new variable that holds the user's input
 				var newUserButton = document.forms["inputForm"]["userInput"].value;
 
 				//Add new button to the Array
 				topics.push(newUserButton);
-
+				
+				//First, we need to empty the div that contains the buttons
+				$("#buttonsDiv").empty();
+				
+				//Create all buttons again
 				createButtons();
 
 				//Testing & Debugging
 				console.log(newUserButton);
 				console.log(topics);
 			});
-		}
-
-
-	// MAIN PROCESS
-	// ============
-		createButtons();
-		addNewButtons();
 
 		//This function captures the user's choice & runs the AJAX API
 		$(".allButtons").on("click", function(){
@@ -132,9 +143,6 @@ $(document).ready(function(){
 				//Apply a class to all the img elements
 				$("img").addClass("allGiphyImages");
 
-				addNewButtons();
-
-
 			//Testing & Debugging
 			console.log(userChoice);
 			console.log(userChoiceEncoded);
@@ -159,8 +167,5 @@ $(document).ready(function(){
 			}
 
 		});
-		
-
-	
 
 }); //IMPORTANT!
