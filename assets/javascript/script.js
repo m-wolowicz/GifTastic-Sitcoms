@@ -52,34 +52,34 @@ $(document).ready(function(){
 		createButtons();
 
 		//This function grabs the user input and adds it to the array of buttons
-			$("#submitButton").on("click", function(event) {
+		$("#submitButton").on("click", function(event) {
 
-				// event.preventDefault() prevents submit button from trying to send a form.
-        		// Using a submit button instead of a regular button allows the user to hit
-        		// "Enter" instead of clicking the button if desired
-        		event.preventDefault();
+			// event.preventDefault() prevents submit button from trying to send a form.
+    		// Using a submit button instead of a regular button allows the user to hit
+    		// "Enter" instead of clicking the button if desired
+    		event.preventDefault();
 
-        		//Create a new variable that holds the user's input
-				var newUserButton = document.forms["inputForm"]["userInput"].value;
+    		//Create a new variable that holds the user's input
+			var newUserButton = document.forms["inputForm"]["userInput"].value;
 
-				//Add new button to the Array
-				topics.push(newUserButton);
-				
-				//First, we need to empty the div that contains the buttons
-				$("#buttonsDiv").empty();
-				
-				//Create all buttons again
-				createButtons();
+			//Add new button to the Array
+			topics.push(newUserButton);
+			
+			//First, we need to empty the div that contains the buttons
+			$("#buttonsDiv").empty();
+			
+			//Create all buttons again
+			createButtons();
 
-				//Testing & Debugging
-				console.log(newUserButton);
-				console.log(topics);
-			});
+			//Testing & Debugging
+			console.log(newUserButton);
+			console.log(topics);
+		});
 
 		//This function captures the user's choice & runs the AJAX API
-		$(".allButtons").on("click", function(){
+		$(document).on("click", ".allButtons", function(){
 			//Save the user's choice variable's new value
-			var userChoice = $(this).data("show"); 
+			var userChoice = $(this).data("show");
 
 			//Convert the user's choice to an encoded String for URL purposes
 			var userChoiceEncoded = encodeURI(userChoice);
